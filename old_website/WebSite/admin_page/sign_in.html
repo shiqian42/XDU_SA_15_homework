@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Sign In - Zuozuo Book Store</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../css/bootstrap.css">
+</head>
+
+<body>
+	<div class="h1 text-center">Administrator Sign in</div>
+       <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">Sign in</div>
+                <div class="panel-body">
+                    <form action="check_session_login.php" method="POST">
+                    <div class="container">
+                        <div class="form-group">
+                            <label for="account">Account</label>
+                            <input type="text" name="username" class="form-control" placeholder="Type your account here"> 
+                        </div>
+                        <div class="form-group">
+                            <label for="passwd">Password</label>
+                            <input type="password" name="passcode" class="form-control" placeholder="Password"> 
+                        </div>
+                        <input class="btn btn-lg" type="submit" value="Sign in">
+                        <a href="../index.php" class="btn btn-link" role="button">Homepage</a>
+                	</div>
+                    </form>
+			    </div>
+		   </div>
+	   </div>
+            <div class="panel-footer text-center">Zuozuo Book Store.</div>
+
+
+</body>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+<script src="../js/jquery-1.11.3.min.js"></script> 
+<!-- Include all compiled plugins (below), or include individual files as needed --> 
+<script src="../js/bootstrap.js"></script>
+</html>
