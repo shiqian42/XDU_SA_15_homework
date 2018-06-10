@@ -1638,10 +1638,12 @@ pre code {
 .table-warning > th,
 .table-warning > td {
   background-color: #ffeeba;
+  /*background-color: #ff1111;*/
 }
 
 .table-hover .table-warning:hover {
   background-color: #ffe8a1;
+  /*background-color: #ff4444;*/
 }
 
 .table-hover .table-warning:hover > td,

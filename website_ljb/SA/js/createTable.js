@@ -10,7 +10,7 @@ function createTable(ID, tool, date, status){
     if(status == "Idle")
         row.setAttribute("class", "info");
     else if(status == "In use")
-        row.setAttribute("class", "warning");
+        row.setAttribute("class", "danger");
     else if(status == "Borrowed")
         row.setAttribute("class", "warning");
     else if(status == "Returned")
@@ -32,13 +32,13 @@ function createTable(ID, tool, date, status){
 
 function createTable2(toolName, wareHouse, idleNumber)
 {
-    var tableNode2=document.getElementById("toolsTable");
+    var tableNode=document.getElementById("toolsTable");
 
-    var rows=tableNode2.rows.length;
-    var row=tableNode2.insertRow(rows);
+    var rows=tableNode.rows.length;
+    var row=tableNode.insertRow(rows);
 
-    //alert(rows);
-    var lastrowcell=tableNode2.rows[rows - 1].cells;
+    alert("rows=" + rows);
+    var lastrowcell=tableNode.rows[rows - 1].cells;
     var lastbtnInfo=lastrowcell[3].innerHTML;
     //alert(lastbtnInfo);
     //lastbtnInfo=lastbtnInfo.substr(71, 4);
@@ -60,7 +60,10 @@ function createTable2(toolName, wareHouse, idleNumber)
         }
     }
     //alert(lastbtnInfo);
-    var lastbtnID=parseInt(lastbtnInfo);
+    if(rows == 1)
+        var lastbtnID = 0;
+    else
+        var lastbtnID=parseInt(lastbtnInfo);
     //alert(lastbtnID);
 
     //alert(rows);
@@ -79,11 +82,123 @@ function createTable2(toolName, wareHouse, idleNumber)
     }
     else
     {
-        row.setAttribute("class", "warning");
+        row.setAttribute("class", "danger");
         cell4.innerHTML="<button class=" + '"' + "btn btn-default" + '"' + " id=" + "requestbtn" + String(lastbtnID+1) + "+" + ">预定</button>";
     }
 
 
+}
+
+function createTable3(robotID, wareHouse, status)
+{
+    var tableNode=document.getElementById("RobotTable");
+
+    var rows=tableNode.rows.length;
+    var row=tableNode.insertRow(rows);
+
+    //alert(rows);
+    var lastrowcell=tableNode.rows[rows - 1].cells;
+    var lastbtnInfo=lastrowcell[3].innerHTML;
+    //alert(lastbtnInfo);
+    //lastbtnInfo=lastbtnInfo.substr(71, 4);
+    //alert(lastbtnInfo);
+    for(var i = 0, j = -1; i < lastbtnInfo.length; i++)
+    {
+        if(IsNumeric(lastbtnInfo.charAt(i)))
+        {
+            if(j == -1)
+                j = i;
+            continue;
+        }
+        else if(lastbtnInfo.charAt(i) == ">")
+            break;
+        else if(j > 0)
+        {
+            lastbtnInfo=lastbtnInfo.substr(j, i);
+            break;
+        }
+    }
+    //alert(lastbtnInfo);
+    if(rows == 1)
+        var lastbtnID = 0;
+    else
+        var lastbtnID=parseInt(lastbtnInfo);
+    //alert(lastbtnID);
+
+    //alert(rows);
+
+    var cell1=row.insertCell(0);
+    var cell2=row.insertCell(1);
+    var cell3=row.insertCell(2);
+    var cell4=row.insertCell(3);
+    cell1.innerHTML=robotID;
+    cell2.innerHTML=wareHouse;
+    cell3.innerHTML=status;
+    if(status == "Malfunction")
+    {
+        row.setAttribute("class", "danger");
+        cell4.innerHTML="<button class=" + '"' + "btn btn-default btn-info" + '"' + " id=" + "repairbtn" + String(lastbtnID+1) + " onclick=" + "repairRobot(" + '"' + "repairbtn" + String(lastbtnID+1) + '"' + ")" + ">维修</button>";
+    }
+    else
+    {
+        row.setAttribute("class", "info");
+        cell4.innerHTML="<button class=" + '"' + "btn btn-default disabled" + '"' + " id=" + "repairbtn" + String(lastbtnID+1) + "+" + ">正常</button>";
+    }
+}
+
+function createTable4(ReqID, ReqTool, ReqPerson, ReqTime)
+{
+    var tableNode=document.getElementById("RequestTable");
+
+    var rows=tableNode.rows.length;
+    var row=tableNode.insertRow(rows);
+
+    //alert("rows" + rows);
+    var lastrowcell=tableNode.rows[rows - 1].cells;
+    var lastbtnInfo=lastrowcell[4].innerHTML;
+    //alert(lastbtnInfo);
+    //lastbtnInfo=lastbtnInfo.substr(71, 4);
+    //alert(lastbtnInfo);
+    for(var i = 0, j = -1; i < lastbtnInfo.length; i++)
+    {
+        if(IsNumeric(lastbtnInfo.charAt(i)))
+        {
+            if(j == -1)
+                j = i;
+            continue;
+        }
+        else if(lastbtnInfo.charAt(i) == ">")
+            break;
+        else if(j > 0)
+        {
+            lastbtnInfo=lastbtnInfo.substr(j, i);
+            break;
+        }
+    }
+    //alert(lastbtnInfo);
+    if(rows == 1)
+        var lastbtnID = 0;
+    else
+        var lastbtnID=parseInt(lastbtnInfo);
+    //alert(lastbtnID);
+
+    //alert(rows);
+
+    var cell1=row.insertCell(0);
+    var cell2=row.insertCell(1);
+    var cell3=row.insertCell(2);
+    var cell4=row.insertCell(3);
+    var cell5=row.insertCell(4);
+    var cell6=row.insertCell(5);
+    cell1.innerHTML=ReqID;
+    cell2.innerHTML=ReqTool;
+    cell3.innerHTML=ReqPerson;
+    cell4.innerHTML=ReqTime;
+
+    //alert(lastbtnID);
+    row.setAttribute("class", "info");
+    cell5.innerHTML="<button class=" + '"' + "btn btn-default btn-info" + '"' + " id=" + "apprbtn" + String(lastbtnID+1) + " onclick=" + "requestResove(" + '"apprbtn' + String(lastbtnID+1) + '")' + ">Approve</button>";
+    cell6.innerHTML="<button class=" + '"' + "btn btn-default btn-danger" + '"' + " id=" + "denybtn" + String(lastbtnID+1) + " onclick=" + "requestResove(" + '"' + "denybtn" + String(lastbtnID+1) + '"' + ")" + ">Deny</button>";
 }
 
 function IsNumeric(sText)
