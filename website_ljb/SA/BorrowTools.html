@@ -27,7 +27,7 @@
         <div class="col-md-12 column">
             <div class="page-header">
                 <h1>
-                    Employ and Tool Management System
+                    Employ and Tool Management System    <small id="emplyeeInfo">Arthur, from Texas Co.</small>
                     <div>
                         <small>Borrow Tools</small>
                     </div>
@@ -76,7 +76,7 @@
                 </tr>
                 </thead>
                 <tbody id="toolstatid">
-                <tr class="warning">
+                <!--tr class="warning">
                     <td>
                         CDR Tool 05
                     </td>
@@ -87,22 +87,22 @@
                         0
                     </td>
                     <td>
-                        <button class="btn btn-default" id="requestbtn1">预定</button>
-                    </td>
+                        <button class="btn btn-default disabled" id="requestbtn1">预定</button>
+                    </td-->
                 </tr>
                 </tbody>
             </table>
         </div>
     </div>
-    <div>
-
+    <div align="center">
+        <button type="button" class="btn btn-default btn-danger">Log Out</button>
     </div>
 </div>
 <!-- TODO: describe what to do and what info to pull here.-->
 <script>
     function queryStatus() {
         var toolname=document.getElementById("toolname").value;
-        alert(toolname);
+        alert("tool name is " + toolname);
         //这里做查询
 
         //此处添表
@@ -125,7 +125,7 @@
         var rows=toolTbl.rows.length;
 
         //第一行应该是表头
-        for(var i = 1; i <= rows; i++)
+        for(var i = 1; i < rows; i++)
         {
             var cells=toolTbl.rows[i].cells;
             var btnInfo=cells[3].innerHTML;
