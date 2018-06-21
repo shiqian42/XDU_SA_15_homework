@@ -1,8 +1,14 @@
+<!--Start-->
+<?php session_start(); 
+require('process/get_personal_info.php');
+
+if(isset($_SESSION['name']) && $_SESSION['user_permission']==2){
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" charset="UTF-8">
-    <title>Admin Panel - WMS of TWS - FastRepair Inc.</title>
+    <title>Admin Panel - <?php name() ?> -  WMS of TWS - FastRepair Inc.</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- 引入 Bootstrap -->
@@ -27,7 +33,7 @@
         <div class="col-md-12 column">
             <div class="page-header">
                 <h1>
-                    Warehouse Management System
+                    Warehouse Management System <small><?php sub_co(); ?> Sub Co.</small>
                     <div>
                         <small>Admin Panel</small>
                     </div>
@@ -44,31 +50,33 @@
                     Name
                 </dt>
                 <dd id="employeeName">
-                    Arthur
+                    <?php name(); ?>
                 </dd>
                 <dt id="subCompany">
                     Sub Company
                 </dt>
                 <dd>
-                    HQ
+                    <?php sub_co(); ?>
                 </dd>
                 <dt>
                     Department
                 </dt>
                 <dd id="employeeDep">
-                    Warehouse Admin
+                    <?php department(); ?>
                 </dd>
                 <dt>
                     Position
                 </dt>
                 <dd>
-                    Admin
+                    <?php sub_co(); ?> Admin
                 </dd>
             </dl>
         </div>
+        <!--
         <div class="col-md-6 column" style="text-align:left;margin-left: 250px;">
             <a href="RequestToolsStatus.html"><Strong><font size="4">Tools Status</font></Strong></a>
         </div>
+        -->
         <div class="col-md-4 column">
         </div>
     </div>
@@ -259,3 +267,10 @@
 
 </body>
 </html>
+
+<?php
+}else{
+    echo "未授权访问，您执行了非法操作。";
+}
+
+?>

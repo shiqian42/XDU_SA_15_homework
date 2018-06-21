@@ -1,6 +1,5 @@
 <?php
 require_once('../DB_info.php');
-require_once('borrow_a_tool.php');
 
 $q=$_GET['q'];
  
